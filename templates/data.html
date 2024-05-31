@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Locations\Businesses</title>
+</head>
+<body>
+    <h1>Search Locations</h1>
+    <form method="POST">
+        <label for="location">Location:</label>
+        <input type="text" id="location" name="location" placeholder="Enter location keyword">
+        <br>
+        <label for="country_code">Country:</label>
+        <select id="country_code" name="country_code">
+            <option value="">Select Country</option>
+            <option value="US">United States</option>
+            <option value="UK">United Kingdom</option>
+            <option value="IN">India</option>
+            <option value="DE">Germany</option>
+            <option value="FR">France</option>
+            <option value="IT">Italy</option>
+            </select>
+        <br>
+        <input type="submit" value="Search">
+    </form>
+
+
+    {% if scraped_data_json %}
+    <h2>Results</h2>
+    <pre>{{ scraped_data_json }}</pre>
+    
+    {% else %}
+    <p>No data available yet. Please enter a location and country to search.</p>
+    {% endif %}
+
+    
+    
+</body>
+</html>

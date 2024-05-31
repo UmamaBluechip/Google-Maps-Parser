@@ -13,6 +13,6 @@ def gmaps_parser(location, country_code):
         
         response = client.scrape(params)
         
-        data = json.loads(response.text) 
+        data = json.loads(response.text)
 
         return data

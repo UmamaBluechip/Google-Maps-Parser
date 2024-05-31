@@ -9,15 +9,22 @@ app = Flask(__name__)
 def display_data():
     location = None
     country_code = None
-    scraped_data_json = None
+    all_place_details = []
     if request.method == "POST":
         location = request.form.get("location")
         country_code = request.form.get("country_code")
         if location and country_code:
             scraped_data = gmaps_parser(location=location, country_code=country_code)
-            scraped_data_json = json.dumps(scraped_data, indent=4)
 
-    return render_template("data.html", location=location, country_code=country_code, scraped_data_json=scraped_data_json if scraped_data_json else None)
+            list = scraped_data["scrapingResult"]["locals"]
+
+            for place in list:
+                place_details = [place['title'], place['address'], place['website']]
+                all_place_details.append(place_details)
+
+            all_place_details=all_place_details
+
+    return render_template("data.html", location=location, country_code=country_code, all_place_details=all_place_details)
 
 
 

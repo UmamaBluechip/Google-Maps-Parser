@@ -1,7 +1,5 @@
 from flask import Flask, render_template, request
 from parser_1 import gmaps_parser
-import json
-
 
 app = Flask(__name__)
 

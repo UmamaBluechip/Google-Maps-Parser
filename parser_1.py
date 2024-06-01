@@ -8,7 +8,7 @@ def gmaps_parser(location, country_code):
         params = {
                 "keyword": location,
                 "country": country_code,
-                "domain": "lk"
+                "domain": "com"
                 }
         
         response = client.scrape(params)

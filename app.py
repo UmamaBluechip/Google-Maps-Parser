@@ -8,13 +8,18 @@ def display_data():
     location = None
     country_code = None
     all_place_details = []
+    error_message = None
     if request.method == "POST":
         location = request.form.get("location")
         country_code = request.form.get("country_code")
         if location and country_code:
             scraped_data = gmaps_parser(location=location, country_code=country_code)
 
-            list = scraped_data["scrapingResult"]["locals"]
+            try:
+                list = scraped_data["scrapingResult"]["locals"]
+            except Exception as e:
+                error_message = f"Error scraping data: {str(e)}"
+                
 
             for place in list:
                 place_details = [place['title'], place['address'], place['website']]
@@ -22,7 +27,7 @@ def display_data():
 
             all_place_details=all_place_details
 
-    return render_template("data.html", location=location, country_code=country_code, all_place_details=all_place_details)
+    return render_template("data.html", location=location, country_code=country_code, all_place_details=all_place_details, error_message=error_message)
 
 
 
